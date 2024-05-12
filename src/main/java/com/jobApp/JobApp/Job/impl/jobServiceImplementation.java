@@ -5,6 +5,7 @@ import com.jobApp.JobApp.Job.JobService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -34,6 +35,34 @@ public class jobServiceImplementation implements JobService {
         }
 
         return null;
+    }
+
+    @Override
+    public boolean deleteJobById(Long id) {
+        Iterator<Job> iterator = jobs.iterator();
+        while (iterator.hasNext()){
+            Job job = iterator.next();
+            if(job.getId().equals(id)){
+                iterator.remove();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean updateJob(Long id, Job updateJob) {
+        for(Job job: jobs){
+            if(job.getId().equals(id)){
+                job.setTitle(updateJob.getTitle());
+                job.setDescription(updateJob.getDescription());
+                job.setLocation(updateJob.getLocation());
+                job.setMaxSalary(updateJob.getMaxSalary());
+                job.setMinSalary(updateJob.getMinSalary());
+                return true;
+            }
+        }
+        return false;
     }
 
 
