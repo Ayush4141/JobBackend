@@ -29,7 +29,6 @@ public class jobServiceImplementation implements JobService {
 
     @Override
     public void createJob(Job job) {
-        job.setId(nextId++);
         jobRepository.save(job);
     }
 
