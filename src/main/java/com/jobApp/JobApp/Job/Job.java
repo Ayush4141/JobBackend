@@ -1,6 +1,12 @@
 package com.jobApp.JobApp.Job;
 
+import jakarta.persistence.*;
+
+@Entity
+//@Table(name="job_table")
 public class Job {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     public Long getId() {
@@ -49,6 +55,9 @@ public class Job {
 
     public void setLocation(String location) {
         Location = location;
+    }
+
+    public Job() {
     }
 
     public Job(Long id, String title, String description, String minSalary, String maxSalary, String location) {
