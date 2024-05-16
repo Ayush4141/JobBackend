@@ -4,7 +4,9 @@ import com.jobApp.JobApp.Job.Job;
 import com.jobApp.JobApp.company.Company;
 import com.jobApp.JobApp.company.CompanyRepository;
 import com.jobApp.JobApp.company.CompanyService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -39,7 +41,16 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public void createCompany(Company company) {
+        companyRepository.save(company);
+    }
 
+    @Override
+    public boolean deleteCompanyById(Long id) {
+        if(companyRepository.existsById(id)){
+            companyRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 
 
